@@ -1,4 +1,7 @@
 class University < ApplicationRecord
+    belongs_to :location
     has_many :courses
-    belongs_to :locations
+    has_and_belongs_to_many :students
+
+    validates :name, presence: true
 end

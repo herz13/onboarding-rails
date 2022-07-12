@@ -10,42 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_11_151045) do
+ActiveRecord::Schema.define(version: 2022_07_12_170153) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
-    t.string "subject"
-    t.string "degree"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "fields", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "courses_id"
-    t.integer "universities_id"
-    t.index ["courses_id"], name: "index_fields_on_courses_id"
-    t.index ["universities_id"], name: "index_fields_on_universities_id"
+    t.integer "university_id"
+    t.index ["university_id"], name: "index_courses_on_university_id"
   end
 
   create_table "locations", force: :cascade do |t|
+    t.string "state_province"
     t.string "country"
-    t.string "locale"
+    t.string "alpha_two_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "universities_id"
-    t.index ["universities_id"], name: "index_locations_on_universities_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "course_id"
+    t.index ["course_id"], name: "index_teachers_on_course_id"
   end
 
   create_table "universities", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "domain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "courses_id"
-    t.index ["courses_id"], name: "index_universities_on_courses_id"
+    t.integer "location_id"
+    t.index ["location_id"], name: "index_universities_on_location_id"
   end
 
 end

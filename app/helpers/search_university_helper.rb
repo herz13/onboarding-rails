@@ -15,4 +15,3 @@ module SearchUniversityHelper
             return JSON.parse response.parsed_response.to_json, symbolize_names: true
         end
     end
-end

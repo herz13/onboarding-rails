@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  state_province: MyString
   country: MyString
-  locale: MyString
+  alpha_two_code: MyString
 
 two:
+  state_province: MyString
   country: MyString
-  locale: MyString
+  alpha_two_code: MyString

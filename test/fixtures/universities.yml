@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  type: 
+  domain: MyString
 
 two:
   name: MyString
-  type: 
+  domain: MyString

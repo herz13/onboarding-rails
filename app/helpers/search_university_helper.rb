@@ -1,7 +1,7 @@
 module SearchUniversityHelper
-    def self.get(name = nil, country = nil)
-        BASE_URL = "http://universities.hipolabs.com"
+    BASE_URL = "http://universities.hipolabs.com"
 
+    def self.get(name = nil, country = nil)
         if name
             response = HTTParty.get(BASE_URL + "/search?name=#{name}")
 

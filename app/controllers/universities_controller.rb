@@ -10,3 +10,4 @@ class UniversitiesController < ApplicationController
 
         render json: @universities
     end
+end

@@ -1,17 +1,19 @@
 module SearchUniversityHelper
     def self.get(name = nil, country = nil)
+        BASE_URL = "http://universities.hipolabs.com"
+
         if name
-            response = HTTParty.get("http://universities.hipolabs.com/search?name=#{name}")
+            response = HTTParty.get(BASE_URL + "/search?name=#{name}")
 
             if country
-                response = HTTParty.get("http://universities.hipolabs.com/search?name=#{name}&country=#{country}"
+                response = HTTParty.get(BASE_URL + "/search?name=#{name}&country=#{country}")
             end
 
             return JSON.parse response.parsed_response.to_json, symbolize_names: true
         end
 
         if !name && country
-            response = HTTParty.get("http://universities.hipolabs.com/search?country=#{country}")
+            response = HTTParty.get(BASE_URL + "/search?country=#{country}")
             return JSON.parse response.parsed_response.to_json, symbolize_names: true
         end
     end

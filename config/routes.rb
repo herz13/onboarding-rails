@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :controllers
-  resources :universities
-
+  resources :universities, :locations, :courses, :teachers, :students
+  
   get '/', to: => redirect('/index.html')
 end

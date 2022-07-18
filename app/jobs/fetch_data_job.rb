@@ -13,5 +13,16 @@ class FetchDataJob < ApplicationJob
     end 
 
     puts new_array
+
+    x = 0
+ 
+    new_array.each do |new_array|
+      x = x + 1
+      location = Location.create(country: new_array[:country], alpha_two_code: new_array[:alpha_two_code])
+      university = University.create(name: new_array[:name])
+    end
+
+    university = University.all
+    puts university
   end
 end

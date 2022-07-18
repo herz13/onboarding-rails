@@ -5,21 +5,22 @@ class FetchDataJob < ApplicationJob
     base_url = "http://universities.hipolabs.com"
     
     response = HTTParty.get(base_url + "/search?country")
+    locations = { }
     new_array = []
     parsed_response = JSON.parse response.parsed_response.to_json, symbolize_names: true
 
     parsed_response.each do |obj|
+
+      unless locations[obj[:country]].present?
+        location = Location.create(country: obj[:country], alpha_two_code: obj[:alpha_two_code])
+        locations[location.country] = location.id
+      end
+
       new_array << {name: obj[:name], country: obj[:country], alpha_two_code: obj[:alpha_two_code]}
-    end 
-
-    puts new_array
- 
-    new_array.each do |new_array|
-      location = Location.create(country: new_array[:country], alpha_two_code: new_array[:alpha_two_code])
-      university = University.create(name: new_array[:name])
     end
-
-    university = University.all
-    puts university
+ 
+    new_array.each do |obj|
+      university = University.create(name: obj[:name], location_id: locations[obj[:country]])
+    end
   end
 end

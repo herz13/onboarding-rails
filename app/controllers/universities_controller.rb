@@ -1,6 +1,10 @@
 class UniversitiesController < ApplicationController
     def index
-        @universities = University.all
+        if params[:search]
+            @universities = University.search(params[:search])
+        else
+            @universities = University.all
+        end
         
         render json: @universities
     end
